@@ -3,6 +3,7 @@ import functions
 
 todos = functions.get_todos()
 
+st.set_page_config(layout="wide")
 def add_todo():
     # gets st.session_state values, which keeps the data that your user enters in your app.
     todo = st.session_state["new_todo"] + "\n"
@@ -12,7 +13,10 @@ def add_todo():
 
 st.title("My Todo App")
 st.subheader("This is my todo app.")
-st.write("This app is to increase your productivity.")
+st.write("This app is to increase your <b>productivity</b>.",
+         # This reads the text above as html.
+         # If this is set to False, it will write what is in the parenthesis.
+         unsafe_allow_html=True)
 
 
 for index, todo in enumerate(todos):
@@ -30,3 +34,6 @@ for index, todo in enumerate(todos):
 st.text_input(label="", placeholder="Add new todo...",
               on_change=add_todo, key='new_todo')
 
+# Uploaded a deployed version of this code
+# Link: https://my-todo-app-fkmldy6ymxcuvmq24gyxfa.streamlit.app/
+# Github Repo: https://github.com/derpyjerby/my-todo-app.git
